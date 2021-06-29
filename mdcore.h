@@ -15,19 +15,21 @@
 // Use .lib file
 #pragma comment(lib, "mdcore.lib")
 
-// Include functional library for std::function
-#include <functional>
-
 // Creating namespace MDCore
 namespace MDCore {
+	// Type definations
+	typedef const char * (*cb) (const char * query);
+
 	// Class Http contains all functions for working with http
 	class Http {
 	public:
-		// Start HTTP server, default ip: 0.0.0.0, default port: 8080
+		// Start HTTP server
+		// Default ip: 0.0.0.0
+		// Default port: 8080
 		IMPORT void listen(const char * ip = "0.0.0.0", int port = 8080);
 
 		// Add route, use before listen
-		IMPORT void route(const char * name, std::function<const char * (void)> callback);
+		IMPORT void route(const char * name, cb callback);
 
 		// Content-type: application/json
 		IMPORT void set_json(const char * name);
